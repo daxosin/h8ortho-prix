@@ -1,0 +1,80 @@
+Créer une application Web nommée **H8OrthoPrix**, destinée à la pharmacie **H8Pharma**, permettant de calculer automatiquement les prix TTC de produits orthopédiques et de contention selon des règles métier strictes.
+
+---
+
+🎯 Objectif  
+Fournir aux équipes officinales un outil rapide, fiable et personnalisable pour le calcul des prix TTC, conforme aux grilles LPP et optimisé pour l’usage officinal.
+
+---
+
+🧭 Présentation (à intégrer dans l’interface)  
+Bienvenue sur **H8OrthoPrix**, l'outil de calcul tarifaire de la pharmacie **H8Pharma**. Grâce à une logique métier rigoureuse et une interface moderne, vous pouvez calculer en quelques clics le prix TTC applicable aux dispositifs orthopédiques et de contention.
+
+---
+
+🎨 Design UI attendu  
+- Design professionnel, sobre  
+- **Dark Mode activable**  
+- Logo intégré (voir plus bas)  
+- Résultat du prix clairement affiché  
+- **Bouton “Copier le prix”** pour faciliter l’utilisation au comptoir  
+- Responsive mobile  
+- Aucune authentification requise
+
+---
+
+🖼️ Logo à générer automatiquement  
+Un logo sobre, professionnel, avec :  
+- Croix verte pharmaceutique stylisée  
+- Texte **H8Pharma**  
+- Élément discret évoquant l’orthopédie (ex : genou, ceinture)  
+- Compatible avec le thème sombre
+
+---
+
+📦 Catégories de produits à calculer
+
+### 1. **Contention** (chaussettes, bas cuisses, collants)
+- Saisie : Type + Marque + Gamme
+- Règle :
+  - Si la gamme est **Actys** (Innothera), **Dynaven** (Sigvaris), ou **Secret** (Thuasne)  
+    → **Prix TTC = LPP**
+  - Sinon  
+    → **Prix TTC = Prix d’achat HT + 15 €**
+- Tarifs LPP fixes :
+  - Chaussette : **11,20 €**
+  - Bas cuisse : **14,89 €**
+  - Collant : **42,03 €**
+
+### 2. **Attelles**
+- Saisie : Prix d’achat HT + Tarif LPP
+- Calcul :
+  - **Prix TTC = max(PA_HT × 1,7 ; LPP + 5 €)**
+
+### 3. **Chaussures Gibaud**
+- Saisie : Prix d’achat HT + LPP
+- Calcul :
+  - **Prix TTC = max(PA_HT × 1,6 ; LPP + 10 €)**
+
+### 4. **Chaussures Podowell**
+- Aucun calcul
+- Affichage automatique :
+  - Texte : *"Prix aligné sur le site officiel Podowell"*
+  - Lien cliquable : [https://www.podowell.fr](https://www.podowell.fr)
+
+---
+
+📐 Règles techniques
+- **Tous les prix TTC sont arrondis à l’euro supérieur**
+- Calculs instantanés
+- Résultats clairs
+- Code modulaire
+- Aucun backend nécessaire
+
+---
+
+📁 À générer :
+- Fichiers : `index.html`, `style.css`, `script.js`, `data/lpp.csv`
+- Arborescence complète, compatible WindSurf / GitHub Pages
+- Interface utilisable localement sans installation
+- Logo intégré
