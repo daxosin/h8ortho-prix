@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H8OrthoPrix - Calcul tarifaire orthopédique</title>
-    
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
@@ -37,22 +31,19 @@
                 </div>
             </div>
         </header>
-
         <main class="container">
             <section class="intro card mb-4">
                 <div class="card-body">
                     <h2 class="card-title">H8OrthoPrix</h2>
                     <p class="card-text">
-                        Bienvenue sur <strong>H8OrthoPrix</strong>, l'outil de calcul tarifaire de la pharmacie <strong>H8Pharma</strong>. 
+                        Bienvenue sur <strong>H8OrthoPrix</strong>, l'outil de calcul tarifaire de la pharmacie <strong>H8Pharma</strong>.
                         Calculez en quelques clics le prix TTC applicable aux dispositifs orthopédiques et de contention.
                     </p>
                 </div>
             </section>
-
             <section class="calculator card mb-4">
                 <div class="card-body">
                     <h3 class="card-title">Calculateur de prix</h3>
-                    
                     <form id="price-calculator" class="needs-validation" novalidate>
                         <div class="mb-3">
                             <label for="product-category" class="form-label">Catégorie de produit</label>
@@ -63,17 +54,13 @@
                                 <option value="chaussures-gibaud">Chaussures Gibaud</option>
                                 <option value="chaussures-podowell">Chaussures Podowell</option>
                             </select>
-                            <div class="invalid-feedback">
-                                Veuillez sélectionner une catégorie
-                            </div>
+                            <div class="invalid-feedback">Veuillez sélectionner une catégorie</div>
                         </div>
-
-                        <!-- Champs dynamiques pour la contention -->
                         <div id="contention-fields" class="dynamic-fields d-none">
                             <div class="mb-3">
                                 <label for="contention-type" class="form-label">Type d'article</label>
                                 <select class="form-select" id="contention-type">
-                                    <option value="chaussette">Chaussette</option>
+                                    <option value="chaussette">Chaussette (mi-bas / bas jarret)</option>
                                     <option value="bas_cuisse">Bas cuisse</option>
                                     <option value="collant">Collant</option>
                                 </select>
@@ -87,50 +74,41 @@
                                 <div class="btn-group w-100" role="group" aria-label="Gamme spéciale">
                                     <input type="radio" class="btn-check" name="premium-range" id="premium-range-yes" value="yes">
                                     <label class="btn btn-outline-primary" for="premium-range-yes">Oui</label>
-                                    
                                     <input type="radio" class="btn-check" name="premium-range" id="premium-range-no" value="no" checked>
                                     <label class="btn btn-outline-primary" for="premium-range-no">Non</label>
                                 </div>
                             </div>
+                            <div class="mb-3" id="fabrication-type-group" style="display:none;">
+                                <label class="form-label">Type de fabrication</label>
+                                <div class="btn-group w-100" role="group" aria-label="Type de fabrication">
+                                    <input type="radio" class="btn-check" name="fabrication-type" id="fabrication-serie" value="serie" checked>
+                                    <label class="btn btn-outline-primary" for="fabrication-serie">Série</label>
+                                    <input type="radio" class="btn-check" name="fabrication-type" id="fabrication-surmesure" value="surmesure">
+                                    <label class="btn btn-outline-primary" for="fabrication-surmesure">Sur mesure</label>
+                                </div>
+                                <small class="form-text text-muted mt-1 d-block">Tarifs LPP différents depuis le 15/07/2025 (arrêté du 26/06/2025)</small>
+                            </div>
                         </div>
-
-                        <!-- Champs pour les attelles -->
                         <div id="attelles-fields" class="dynamic-fields d-none">
                             <div class="mb-3">
                                 <label for="attelles-buy-price" class="form-label">Prix d'achat HT (€)</label>
                                 <input type="number" class="form-control" id="attelles-buy-price" step="0.01" min="0" value="0">
-                                <div class="invalid-feedback">
-                                    Veuillez entrer un prix d'achat
-                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="attelles-lpp" class="form-label">Tarif LPP (€)</label>
                                 <input type="number" class="form-control" id="attelles-lpp" step="0.01" min="0" value="0">
-                                <div class="invalid-feedback">
-                                    Veuillez entrer un tarif LPP
-                                </div>
                             </div>
                         </div>
-
-                        <!-- Champs pour les chaussures Gibaud -->
                         <div id="chaussures-gibaud-fields" class="dynamic-fields d-none">
                             <div class="mb-3">
                                 <label for="gibaud-buy-price" class="form-label">Prix d'achat HT (€)</label>
                                 <input type="number" class="form-control" id="gibaud-buy-price" step="0.01" min="0" value="0">
-                                <div class="invalid-feedback">
-                                    Veuillez entrer un prix d'achat
-                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="gibaud-lpp" class="form-label">Tarif LPP (€)</label>
                                 <input type="number" class="form-control" id="gibaud-lpp" step="0.01" min="0" value="0">
-                                <div class="invalid-feedback">
-                                    Veuillez entrer un tarif LPP
-                                </div>
                             </div>
                         </div>
-
-                        <!-- Message pour Podowell -->
                         <div id="podowell-message" class="dynamic-fields d-none">
                             <div class="alert alert-info">
                                 <p class="mb-2">Prix aligné sur le site officiel Podowell</p>
@@ -139,12 +117,10 @@
                                 </a>
                             </div>
                         </div>
-
                         <button type="button" class="btn btn-primary mt-3" id="calculate-btn" onclick="return false;">Calculer le prix</button>
                     </form>
                 </div>
             </section>
-
             <section id="result-section" class="result-section card d-none mb-4">
                 <div class="card-body text-center">
                     <h3 class="card-title">Résultat</h3>
@@ -158,18 +134,13 @@
                 </div>
             </section>
         </main>
-
         <footer class="mt-auto py-3">
             <div class="container text-center">
-                <p class="mb-0">&copy; 2025 H8Pharma - H8OrthoPrix</p>
+                <p class="mb-0">&copy; 2025-2026 H8Pharma - H8OrthoPrix <small class="text-muted">v1.1</small></p>
             </div>
         </footer>
     </div>
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
